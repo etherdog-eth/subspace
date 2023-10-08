@@ -44,7 +44,8 @@ df -B1 | awk 'NR>1{print $4,$6}' | sort -h -r | head -n 1 | while read -r space 
   # Replace `PLOT_SIZE` with plot size in gigabytes or terabytes, for example 100G or 2T (but leave at least 60G of disk space for node and some for OS)
 
   cmd="sudo nohup ./subspace-farmer farm --reward-address st8MUEgiU7cDiCF1BQm6RyyW5J2e3wprXMLNqXsabv3VRsbS4 path=$path,size=$size$unit > farm.log 2>&1 &"
-  eval "$cmd"
+  echo $cmd
+  eval $cmd
 done
 
-ps -ef subspace
+ps -ef | grep subspace
